@@ -17,9 +17,10 @@ public class User {
     @Id
     private Long id;
 
-    // nullable: null 허용 여부
-// unique: 중복 허용 여부 (false 일때 중복 허용)
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
+    private String user_id;
+
+    @Column(nullable = false)
     private String username;
 
     @Column(nullable = false)
@@ -32,10 +33,10 @@ public class User {
 //    @Enumerated(value = EnumType.STRING)
 //    private UserRoleEnum role;
 
-    public User(String username, String password,String passwordCk ) {
+    public User(String user_id, String username, String password, String passwordCk ) {
+        this.user_id = user_id;
         this.username = username;
         this.password = password;
         this.passwordCk = passwordCk;
-//        this.role = role;
     }
 }
