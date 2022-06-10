@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.Optional;
+
 @RequiredArgsConstructor
 @Service
 public class UserService {
@@ -56,7 +58,6 @@ public class UserService {
 //            }
 //            role = UserRoleEnum.ADMIN;
 //        }
-
 //        User user = new User(username, password, email, role);
         User user = new User(user_id, username, password, passwordCk);
         System.out.println("user = " + user);

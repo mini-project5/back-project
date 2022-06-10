@@ -9,9 +9,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @Controller
+@RestController
 public class UserController {
 
     private final UserService userService;
@@ -34,7 +36,7 @@ public class UserController {
     }
 
     // 회원 가입 요청 처리
-    @PostMapping("/user/signup")
+    @PostMapping("/register")
     public User registerUser(@RequestBody SignupRequestDto requestDto) {
         return userService.registerUser(requestDto);
         //
