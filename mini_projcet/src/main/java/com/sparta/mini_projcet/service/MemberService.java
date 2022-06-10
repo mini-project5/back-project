@@ -4,6 +4,7 @@ import com.sparta.mini_projcet.dto.SignupRequestDto;
 import com.sparta.mini_projcet.model.Member;
 import com.sparta.mini_projcet.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -13,6 +14,7 @@ import java.util.Optional;
 @Service
 public class MemberService {
     private final MemberRepository memberRepository;
+    private final PasswordEncoder passwordEncoder;
 //    private static final String ADMIN_TOKEN = "AAABnv/xRVklrnYxKZ0aHgTBcXukeZygoC";
 //
 //    @Autowired
@@ -44,6 +46,9 @@ public class MemberService {
         if(!password.equals(passwordCk)){
             throw new IllegalArgumentException("비밀번호와 비밀번호 확인이 같지않습니다 확인해주세요");
         }
+
+        //패스워드 암호화
+        password = passwordEncoder.encode(requestDto.getPassword());
 
 //        String email = requestDto.getEmail();
 //// 사용자 ROLE 확인
