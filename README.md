@@ -1,5 +1,27 @@
 # back-project
 
+<table>
+    <tr>
+        <th colspan=5>💻🙎‍♂스터디원</th>
+    </tr>
+    <tr>
+        <td><a href='https://github.com/qoqomi'>유승연</a></td>
+        <td><a href='https://github.com/Lee-Kyung-Dong'>이경동</a></td>
+        <td><a href='https://github.com/lky8967'>이정우</a></td>
+        <td><a href='https://github.com/ParkSungGyu1'>박성규</a></td>
+        <td><a href='https://github.com/puppyGugu'>이병수</a></td>
+</table>
+
+<br>
+
+## 진행방식
+> 
+
+<br>
+
+## 진행상황
+
+
 로그인 api
  -로그인: POST/login
    -id
