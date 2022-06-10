@@ -1,6 +1,7 @@
 package com.sparta.mini_projcet.controller;
 import com.sparta.mini_projcet.dto.SignupRequestDto;
 import com.sparta.mini_projcet.model.User;
+import com.sparta.mini_projcet.security.UserDetailsImpl;
 import com.sparta.mini_projcet.service.UserService;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletResponse;
 
 @RequiredArgsConstructor
 @Controller
@@ -42,4 +45,10 @@ public class UserController {
         //
 //        return "redirect:/user/login";
     }
+    // 로그인
+//    @PostMapping("/user/login")
+//    public ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto requestDto,
+//                                                  HttpServletResponse response) {
+//        return userService.login(requestDto, response);
+//    }
 }
