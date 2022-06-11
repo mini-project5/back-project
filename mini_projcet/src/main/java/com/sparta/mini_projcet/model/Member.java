@@ -18,11 +18,12 @@ public class Member {
     @Id
     private Long id;
 
-    @Column(nullable = false)
-    private String userid;
 
     @Column(nullable = false)
     private String username;
+
+    @Column(nullable = false)
+    private String nickname;
 
     @Column(nullable = false)
     private String password;
@@ -34,8 +35,8 @@ public class Member {
 //    @Enumerated(value = EnumType.STRING)
 //    private UserRoleEnum role;
 
-    public Member(String userid, String username, String password, String passwordCk ) {
-        this.userid = userid;
+    public Member(String nickname, String username, String password, String passwordCk ) {
+        this.nickname = nickname;
         this.username = username;
         this.password = password;
         this.passwordCk = passwordCk;
@@ -43,7 +44,7 @@ public class Member {
 
     public Member(SignupRequestDto requestDto) {
         this.password = requestDto.getPassword();
-        this.userid = requestDto.getUserid();
+        this.nickname = requestDto.getNickname();
         this.username = requestDto.getUsername();
         this.passwordCk = requestDto.getPasswordCk();
     }
