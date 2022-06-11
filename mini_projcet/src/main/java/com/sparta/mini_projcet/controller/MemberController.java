@@ -33,12 +33,13 @@ public class MemberController {
     // 로그인 테스트
     @GetMapping("/")
     public String test(String pw){
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+       /* BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String encrypted_pw = encoder.encode("aaaaaa");
         if(encoder.matches(pw, encrypted_pw))
             return "accept : " + encrypted_pw;
         else
-            return "떙";
+            return "떙";*/
+        return "login";
     }
 
 }
