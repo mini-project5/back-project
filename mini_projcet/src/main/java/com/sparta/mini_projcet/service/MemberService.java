@@ -26,7 +26,7 @@ public class MemberService {
 //        this.userRepository = userRepository;
 //    }
 
-    public Member registerUser(@RequestBody SignupRequestDto requestDto) {
+    public void registerUser(@RequestBody SignupRequestDto requestDto) {
         String nickname = requestDto.getNickname();
         String username = requestDto.getUsername();
         String password = requestDto.getPassword();
@@ -71,7 +71,7 @@ public class MemberService {
 
         Member member = new Member(nickname , username ,password ,passwordCk);
         System.out.println("user = " + member);
-        return memberRepository.save(member);
+        memberRepository.save(member);
 
     }
 }
