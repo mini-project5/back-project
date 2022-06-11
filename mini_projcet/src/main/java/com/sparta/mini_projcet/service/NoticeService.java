@@ -14,8 +14,8 @@ public class NoticeService {
     private final NoticeRepository noticeRepository;
 
     @Transactional
-    public void noticeWrite(NoticeCreateDto noticeCreateDto){
-        Notice notice = Notice.createNotice(noticeCreateDto);
+    public void noticeWrite(NoticeCreateDto noticeCreateDto, String username){
+        Notice notice = Notice.createNotice(noticeCreateDto, username);
         noticeRepository.save(notice);
     }
 }

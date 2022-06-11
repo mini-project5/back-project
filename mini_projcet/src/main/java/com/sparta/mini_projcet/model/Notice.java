@@ -20,15 +20,15 @@ public class Notice {
 
     private String title;
     private String description;
-    //private String username;
+    private String username;
 
 
-    public static Notice createNotice(NoticeCreateDto noticeCreateDto){
+    public static Notice createNotice(NoticeCreateDto noticeCreateDto, String username){
         Notice notice = new Notice();
 
         notice.setTitle(noticeCreateDto.getTitle());
         notice.setDescription(noticeCreateDto.getDescription());
-        /*notice.setUsername(noticeCreateDto.getUsername());*/
+        notice.setUsername(username);
         return notice;
     }
 
