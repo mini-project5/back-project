@@ -1,19 +1,36 @@
 package com.sparta.mini_projcet.security;
+
+
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+@RequiredArgsConstructor
 @Configuration
-@EnableWebSecurity // 스프링 Security 지원을 가능하게 함
+@EnableWebSecurity(debug = true) // 스프링 Security 지원을 가능하게 함
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private final JwtTokenProvider jwtTokenProvider;
+
+    // 암호화에 필요한 PasswordEncoder 를 Bean 등록합니다
     @Bean
     public BCryptPasswordEncoder encodePassword() {
         return new BCryptPasswordEncoder();
+    }
+
+    // authenticationManager를 Bean 등록합니다.
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 
     @Override
@@ -21,50 +38,27 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 // h2-console 사용에 대한 허용 (CSRF, FrameOptions 무시)
         web
                 .ignoring()
-                .antMatchers("/h2-console/**");
+                .antMatchers("/h2-console/**")
+                .antMatchers("/user/**");
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-// 회원 관리 처리 API (POST /user/**) 에 대해 CSRF 무시
-        http.csrf()
-//                .ignoringAntMatchers("/register");
-//                .ignoringAntMatchers("/");
-                .ignoringAntMatchers("/user/**")
-                .ignoringAntMatchers("/main/**");
+        http.httpBasic().disable()//rest api를 생각해서 기본 설정 해제
+                .csrf().disable() // csrf보안토큰 disable처리
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 토큰 기반 인증이므로 세션 역시 사용하지 않습니다.
+                .and()
+                .authorizeRequests()// 로그인과 회원가입은 열어줌
 
 
-
-        http.authorizeRequests()
-// image 폴더를 login 없이 허용
-                .antMatchers("/images/**").permitAll()
-// css 폴더를 login 없이 허용
-                .antMatchers("/css/**").permitAll()
-// 회원 관리 처리 API 전부를 login 없이 허용
                 .antMatchers("/user/register").permitAll()
-                .antMatchers("/main/write").permitAll()
-                .antMatchers("/").permitAll()
-// 그 외 어떤 요청이든 '인증'
-                .antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/user/**").permitAll()
+
                 .anyRequest().authenticated()
                 .and()
-// [로그인 기능]
-                .formLogin()
-// 로그인 View 제공 (GET /user/login)
-                //.loginPage("/user/login")
 
-// 로그인 처리 (POST /user/login)
-                .loginProcessingUrl("/user/login")
-// 로그인 처리 후 성공 시 URL
-                .defaultSuccessUrl("/")
-// 로그인 처리 후 실패 시 URL
-//                .failureUrl("/user/login?error")
-                .permitAll()
-                .and()
-// [로그아웃 기능]
-                .logout()
-// 로그아웃 처리 URL
-                .logoutUrl("/user/logout")
-                .permitAll();
+                .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider)
+                        , UsernamePasswordAuthenticationFilter.class);
+
     }
 }
