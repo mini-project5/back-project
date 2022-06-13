@@ -1,5 +1,6 @@
 package com.sparta.mini_projcet.service;
 
+import com.sparta.mini_projcet.dto.LoginRequestDto;
 import com.sparta.mini_projcet.dto.SignupRequestDto;
 import com.sparta.mini_projcet.model.Member;
 import com.sparta.mini_projcet.repository.MemberRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Optional;
+import java.util.regex.Pattern;
 
 @RequiredArgsConstructor
 @Service
@@ -26,11 +28,26 @@ public class MemberService {
 //        this.userRepository = userRepository;
 //    }
 
+    public Boolean login(LoginRequestDto loginRequestDto){
+        Member member = memberRepository.findByUsername(loginRequestDto.getUsername())
+                .orElse(null);
+        if (member != null) {
+            if (!passwordEncoder.matches(loginRequestDto.getPassword(), member.getPassword())) {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+
     public void registerUser(@RequestBody SignupRequestDto requestDto) {
         String nickname = requestDto.getNickname();
         String username = requestDto.getUsername();
         String password = requestDto.getPassword();
-        String passwordCk = requestDto.getPasswordCk();;
+        String passwordCk = requestDto.getPasswordCk();
+//        String pattern = "^[a-zA-Z0-9]*$";
         System.out.println("passwordCk = " + passwordCk);
         System.out.println("username = " + username);
         System.out.println("password = " + password);
@@ -40,6 +57,9 @@ public class MemberService {
         if (found.isPresent()) {
             throw new IllegalArgumentException("중복된 사용자 닉네임이 존재합니다.");
         }
+//        if(!Pattern.matches(pattern, password)){
+//            throw new IllegalArgumentException("패스워드는 알파벳 대소문자와 숫자로만 입력해주세요.");
+//        }
         Optional<Member> foundid = memberRepository.findByNickname(nickname);
         if (foundid.isPresent()) {
             throw new IllegalArgumentException("중복된 사용자 ID 가 존재합니다.");
