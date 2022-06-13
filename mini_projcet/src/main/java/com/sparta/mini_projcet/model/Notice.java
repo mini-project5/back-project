@@ -13,7 +13,7 @@ import javax.persistence.*;
 @Setter
 @Table(name = "notice")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Notice {
+public class Notice extends Timestamped{
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "notice_id")
     private Long id;
@@ -21,6 +21,7 @@ public class Notice {
     private String title;
     private String description;
     private String username;
+    private String nickname;
 
 
     public static Notice createNotice(NoticeCreateDto noticeCreateDto, String username){
