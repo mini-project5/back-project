@@ -42,4 +42,6 @@ public class MemberController {
         return "login";
     }
 
+
+//    List<SimpleOrderDto> result = orders.stream() .map(o -> new SimpleOrderDto(o)) .collect(Collectors.toList());
 }
