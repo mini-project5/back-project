@@ -2,7 +2,6 @@ package com.sparta.mini_projcet.controller;
 
 import com.sparta.mini_projcet.dto.SignupRequestDto;
 import com.sparta.mini_projcet.exception.ApiResponseMessage;
-import com.sparta.mini_projcet.model.Member;
 import com.sparta.mini_projcet.service.MemberService;
 import lombok.RequiredArgsConstructor;
 
@@ -39,7 +38,10 @@ public class MemberController {
             return "accept : " + encrypted_pw;
         else
             return "떙";*/
+        ApiResponseMessage message = new ApiResponseMessage("Success", "로그인이 완료되었습니다", "", "");
         return "login";
     }
 
+
+//    List<SimpleOrderDto> result = orders.stream() .map(o -> new SimpleOrderDto(o)) .collect(Collectors.toList());
 }
