@@ -53,6 +53,7 @@ public class MemberService {
 
         //패스워드 암호화
         password = passwordEncoder.encode(requestDto.getPassword());
+        passwordCk = passwordEncoder.encode(requestDto.getPasswordCk());
 
 //        if(!encoder.matches(password, passwordCk)) {
 //            throw new IllegalArgumentException("비밀번호와 비밀번호 확인이 같지않습니다 확인해주세요");

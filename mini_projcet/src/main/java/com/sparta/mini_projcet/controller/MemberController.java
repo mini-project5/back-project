@@ -29,19 +29,6 @@ public class MemberController {
         return new ResponseEntity<ApiResponseMessage>(message, HttpStatus.OK);
     }
 
-    // 로그인 테스트
-    @GetMapping("/")
-    public String test(String pw){
-       /* BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String encrypted_pw = encoder.encode("aaaaaa");
-        if(encoder.matches(pw, encrypted_pw))
-            return "accept : " + encrypted_pw;
-        else
-            return "떙";*/
-        ApiResponseMessage message = new ApiResponseMessage("Success", "로그인이 완료되었습니다", "", "");
-        return "login";
-    }
-
 
 //    List<SimpleOrderDto> result = orders.stream() .map(o -> new SimpleOrderDto(o)) .collect(Collectors.toList());
 }
