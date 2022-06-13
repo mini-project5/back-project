@@ -16,16 +16,16 @@ public class NoticeResponseDto {
     private String description;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private final LocalDateTime modifiedAt;
-    private int countReply;
+//    private int countReply;
 
     @Builder
-    public NoticeResponseDto(Notice description, int countReply) {
+    public NoticeResponseDto(Notice description) {
         this.id = description.getId();
         this.title = description.getTitle();
         this.nickname = description.getNickname();
         this.username = description.getUsername();
         this.description = description.getDescription();
         this.modifiedAt = description.getModifiedAt();
-        this.countReply = countReply;
+//        this.countReply = countReply;
     }
 }
