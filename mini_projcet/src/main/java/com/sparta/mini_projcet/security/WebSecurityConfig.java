@@ -133,6 +133,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         skipPathList.add("POST,/user/register");
 
         skipPathList.add("POST,/main/write");
+        skipPathList.add("GET,/main/**");
              // 게시글 인증   얘네를 하면 로그인을 하지 않고 했을 때 예외처리가 아닌 403 error가 뜬다.
 //                .antMatchers(HttpMethod.DELETE, "/main/write/**").authenticated()
 ////                .antMatchers(HttpMethod.POST, "/main/write/**").authenticated()
