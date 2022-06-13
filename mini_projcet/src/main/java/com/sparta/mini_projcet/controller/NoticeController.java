@@ -47,7 +47,7 @@ public class NoticeController {
 
     // 게시글 조회
     @GetMapping("/main")
-    public List<Notice> getContents() {
+    public List<NoticeResponseDto> getContents() {
         return noticeService.getNotice();
     }
 
