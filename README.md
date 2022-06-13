@@ -36,10 +36,10 @@
 * 메인페이지 api
     - 메인페이지 뷰: GET/main
         * List
-        - image
-        - description
-        - username(id)
-        - like
+            - image
+            - description
+            - username(id)
+            - like
 * 게시글 작성 api
     - 게시글 작성 뷰: GET/main/write
     - 게시글 작성: POST/main/write
