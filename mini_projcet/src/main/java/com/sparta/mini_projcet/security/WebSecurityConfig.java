@@ -49,11 +49,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
 
                 // api 요청 접근허용
-                .antMatchers("/user/**").permitAll()
+                .antMatchers("/api/user/**").permitAll()
                 .antMatchers("**").permitAll()
                 .antMatchers("/").permitAll()
-                .antMatchers(HttpMethod.POST,"/write").permitAll()
-//                .antMatchers(HttpMethod.GET, "/api/reply/**").permitAll()
+                .antMatchers(HttpMethod.POST,"/api/notice/write").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/notice").permitAll()
                 // 그 외 모든 요청은 인증과정 필요
                 .anyRequest().authenticated()
                 .and()

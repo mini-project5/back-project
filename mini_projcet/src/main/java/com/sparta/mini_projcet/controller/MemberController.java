@@ -22,7 +22,7 @@ public class MemberController {
     private final JwtTokenProvider jwtTokenProvider;
 
     // 회원 로그인
-    @PostMapping("/user/login")
+    @PostMapping("/api/user/login")
     public String login(@RequestBody LoginRequestDto loginRequestDto) {
         if (memberService.login(loginRequestDto)) {
             String token = jwtTokenProvider.createToken(loginRequestDto.getUsername());
@@ -33,7 +33,7 @@ public class MemberController {
         }
     }
     // 회원 가입 요청 처리
-    @PostMapping("/user/register")
+    @PostMapping("/api/user/signup")
     public ResponseEntity<ApiResponseMessage>  registerUser(@RequestBody SignupRequestDto requestDto) {
         memberService.registerUser(requestDto);
 
