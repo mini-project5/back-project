@@ -28,7 +28,7 @@ public class NoticeController {
     //AuthenticationPrincipal 적용 필요
 
     // 게시글 작성
-    @PostMapping("/main/write")
+    @PostMapping("/notice/write")
     public ResponseEntity<ApiResponseMessage> noticeWrite(@RequestBody @Valid NoticeCreateDto noticeCreateDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
         /*try {
             noticeService.noticeWrite(noticeCreateDto);
@@ -40,9 +40,27 @@ public class NoticeController {
         }*/
 
         noticeService.noticeWrite(noticeCreateDto, userDetails.getUsername());
-
         ApiResponseMessage message = new ApiResponseMessage("Success", "게시글이 작성 되었습니다.", "", "");
         return new ResponseEntity<ApiResponseMessage>(message, HttpStatus.OK);
+
+    }
+
+    @PostMapping("/notice/write2")
+    public ResponseEntity<ApiResponseMessage> noticeWrite2(@RequestBody @Valid NoticeCreateDto noticeCreateDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
+        /*try {
+            noticeService.noticeWrite(noticeCreateDto);
+            ApiResponseMessage message = new ApiResponseMessage("Success", "게시글이 작성 되었습니다.", "", "");
+            return new ResponseEntity<ApiResponseMessage>(message, HttpStatus.OK);
+        }catch (Exception e){
+            ApiResponseMessage message = new ApiResponseMessage("INTERNAL SERVER ERROR", "서버 오류입니다.", "", "");
+            return new ResponseEntity<ApiResponseMessage>(message, HttpStatus.INTERNAL_SERVER_ERROR);
+        }*/
+
+        noticeService.noticeWrite(noticeCreateDto, userDetails.getUsername());
+        ApiResponseMessage message = new ApiResponseMessage("Success", "게시글이 작성 되었습니다.", "", "");
+        return new ResponseEntity<ApiResponseMessage>(message, HttpStatus.OK);
+
+
     }
 
     // 게시글 조회
