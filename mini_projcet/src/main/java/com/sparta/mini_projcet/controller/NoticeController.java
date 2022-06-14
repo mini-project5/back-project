@@ -31,7 +31,7 @@ public class NoticeController {
     //AuthenticationPrincipal 적용 필요
 
     // 게시글 작성
-    @PostMapping("/write")
+    @PostMapping("/api/notice/write")
     public ResponseEntity<ApiResponseMessage> noticeWrite(@RequestBody @Valid NoticeCreateDto noticeCreateDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
         /*try {
             noticeService.noticeWrite(noticeCreateDto);
@@ -51,7 +51,7 @@ public class NoticeController {
     }
 
     // 게시글 조회
-    @GetMapping("/")
+    @GetMapping("/api/notice")
     public List<NoticeResponseDto> getContents() {
         return noticeService.getNotice();
     }
