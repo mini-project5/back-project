@@ -28,7 +28,7 @@ public class NoticeController {
     //AuthenticationPrincipal 적용 필요
 
     // 게시글 작성
-    @PostMapping("/main/write")
+    @PostMapping("/api/notice/write")
     public ResponseEntity<ApiResponseMessage> noticeWrite(@RequestBody @Valid NoticeCreateDto noticeCreateDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
         /*try {
             noticeService.noticeWrite(noticeCreateDto);
