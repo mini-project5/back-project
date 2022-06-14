@@ -23,6 +23,14 @@ public class Notice extends Timestamped{
     private String username;
     private String nickname;
 
+    @Column
+    private int loveCnt;
+
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
+
+
 
     public static Notice createNotice(NoticeCreateDto noticeCreateDto, String username){
         Notice notice = new Notice();
