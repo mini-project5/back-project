@@ -3,7 +3,9 @@ package com.sparta.mini_projcet.controller;
 import com.sparta.mini_projcet.dto.NoticeCreateDto;
 import com.sparta.mini_projcet.dto.NoticeResponseDto;
 import com.sparta.mini_projcet.exception.ApiResponseMessage;
+import com.sparta.mini_projcet.model.Member;
 import com.sparta.mini_projcet.model.Notice;
+import com.sparta.mini_projcet.repository.MemberRepository;
 import com.sparta.mini_projcet.repository.NoticeRepository;
 import com.sparta.mini_projcet.security.UserDetailsImpl;
 import com.sparta.mini_projcet.service.NoticeService;
@@ -24,11 +26,13 @@ public class NoticeController {
     private final NoticeService noticeService;
 
     private final NoticeRepository noticeRepository;
+    private final MemberRepository memberRepository;
 
     //AuthenticationPrincipal 적용 필요
 
     // 게시글 작성
-    @PostMapping("/notice/write")
+
+    @PostMapping("/api/notice/write")
     public ResponseEntity<ApiResponseMessage> noticeWrite(@RequestBody @Valid NoticeCreateDto noticeCreateDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
         /*try {
             noticeService.noticeWrite(noticeCreateDto);
@@ -38,33 +42,16 @@ public class NoticeController {
             ApiResponseMessage message = new ApiResponseMessage("INTERNAL SERVER ERROR", "서버 오류입니다.", "", "");
             return new ResponseEntity<ApiResponseMessage>(message, HttpStatus.INTERNAL_SERVER_ERROR);
         }*/
-
+        System.out.println("1");
         noticeService.noticeWrite(noticeCreateDto, userDetails.getUsername());
         ApiResponseMessage message = new ApiResponseMessage("Success", "게시글이 작성 되었습니다.", "", "");
         return new ResponseEntity<ApiResponseMessage>(message, HttpStatus.OK);
 
     }
-
-    @PostMapping("/notice/write2")
-    public ResponseEntity<ApiResponseMessage> noticeWrite2(@RequestBody @Valid NoticeCreateDto noticeCreateDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
-        /*try {
-            noticeService.noticeWrite(noticeCreateDto);
-            ApiResponseMessage message = new ApiResponseMessage("Success", "게시글이 작성 되었습니다.", "", "");
-            return new ResponseEntity<ApiResponseMessage>(message, HttpStatus.OK);
-        }catch (Exception e){
-            ApiResponseMessage message = new ApiResponseMessage("INTERNAL SERVER ERROR", "서버 오류입니다.", "", "");
-            return new ResponseEntity<ApiResponseMessage>(message, HttpStatus.INTERNAL_SERVER_ERROR);
-        }*/
-
-        noticeService.noticeWrite(noticeCreateDto, userDetails.getUsername());
-        ApiResponseMessage message = new ApiResponseMessage("Success", "게시글이 작성 되었습니다.", "", "");
-        return new ResponseEntity<ApiResponseMessage>(message, HttpStatus.OK);
-
-
-    }
+    
 
     // 게시글 조회
-    @GetMapping("/main")
+    @GetMapping("/api/notice")
     public List<NoticeResponseDto> getContents() {
         return noticeService.getNotice();
     }
