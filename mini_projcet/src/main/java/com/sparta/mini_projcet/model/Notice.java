@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -21,7 +22,9 @@ public class Notice extends Timestamped{
     private String title;
     private String description;
     private String username;
-    private String nickname;
+    /*private String nickname;*/
+    private String image;
+    private LocalDateTime noticeDate;
 
     @Column
     private int loveCnt;
@@ -34,9 +37,9 @@ public class Notice extends Timestamped{
 
     public static Notice createNotice(NoticeCreateDto noticeCreateDto, String username){
         Notice notice = new Notice();
-
         notice.setTitle(noticeCreateDto.getTitle());
         notice.setDescription(noticeCreateDto.getDescription());
+        notice.setNoticeDate(noticeCreateDto.getDay());
         notice.setUsername(username);
         return notice;
     }

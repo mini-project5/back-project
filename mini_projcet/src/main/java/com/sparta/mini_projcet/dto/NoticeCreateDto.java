@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
+import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
@@ -13,4 +14,6 @@ public class NoticeCreateDto {
     private String title;
     @NotNull(message = "내용을 입력해 주세요.")
     private String description;
+    private String image;
+    private LocalDateTime day;
 }

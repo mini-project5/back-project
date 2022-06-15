@@ -29,10 +29,11 @@ public class NoticeController {
 
     // 게시글 작성
     @PostMapping("/api/notice/write")
-    public ResponseEntity<ApiResponseMessage> noticeWrite(@RequestBody @Valid NoticeCreateDto noticeCreateDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
-        noticeService.noticeWrite(noticeCreateDto, userDetails.getUsername());
-        ApiResponseMessage message = new ApiResponseMessage("Success", "게시글이 작성 되었습니다.", "", "");
-        return new ResponseEntity<ApiResponseMessage>(message, HttpStatus.OK);
+    public NoticeResponseDto noticeWrite(@RequestBody @Valid NoticeCreateDto noticeCreateDto, @AuthenticationPrincipal UserDetailsImpl userDetails){
+        return noticeService.noticeWrite(noticeCreateDto, userDetails.getUsername());
+       /* ApiResponseMessage message = new ApiResponseMessage("Success", "게시글이 작성 되었습니다.", "", "");
+       * return new  ResponseEntity<ApiResponseMessage>(message, HttpStatus.OK);
+       * */
 
     }
     // 게시글 조회
@@ -40,6 +41,21 @@ public class NoticeController {
     public List<NoticeResponseDto> getContents() {
         return noticeService.getNotice();
     }
+
+    //게시글 수정
+    @PatchMapping("/api/notice/change/{id}")
+    public NoticeResponseDto changeContents(@PathVariable("id") Long noticeId, @RequestBody NoticeCreateDto noticeCreateDto){
+        return noticeService.changeNotice(noticeId, noticeCreateDto);
+    }
+
+    //게시글 삭제
+    @DeleteMapping("/api/notice/del/{id}")
+    public ResponseEntity<ApiResponseMessage> noticeDelete(@PathVariable("id") Long noticeId, @AuthenticationPrincipal UserDetailsImpl userDetails){
+        noticeService.deleteContent(noticeId,userDetails.getUsername());
+        ApiResponseMessage message = new ApiResponseMessage("Success", "게시글이 삭제 되었습니다.", "", "");
+        return new ResponseEntity<ApiResponseMessage>(message, HttpStatus.OK);
+    }
+
 
     // 게시글 디테일 조회
     @GetMapping("/main/{id}")

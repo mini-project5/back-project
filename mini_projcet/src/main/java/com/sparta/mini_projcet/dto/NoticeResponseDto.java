@@ -11,21 +11,23 @@ import java.time.LocalDateTime;
 public class NoticeResponseDto {
     private Long id;
     private String title;
-    private String nickname;
+    /*private String nickname;*/
     private String username;
     private String description;
+    private String image;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private final LocalDateTime modifiedAt;
+    private LocalDateTime day;
 //    private int countReply;
 
     @Builder
     public NoticeResponseDto(Notice description) {
         this.id = description.getId();
         this.title = description.getTitle();
-        this.nickname = description.getNickname();
+        /*this.nickname = description.getNickname();*/
         this.username = description.getUsername();
         this.description = description.getDescription();
-        this.modifiedAt = description.getModifiedAt();
+        this.day = description.getNoticeDate();
+        this.image =description.getImage();
 //        this.countReply = countReply;
     }
 }
