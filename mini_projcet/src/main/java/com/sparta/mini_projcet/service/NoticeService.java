@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -21,9 +20,11 @@ public class NoticeService {
 
     // 게시글 작성
     @Transactional
-    public void noticeWrite(NoticeCreateDto noticeCreateDto, String username){
+    public NoticeResponseDto noticeWrite(NoticeCreateDto noticeCreateDto, String username){
         Notice notice = Notice.createNotice(noticeCreateDto, username);
         noticeRepository.save(notice);
+        NoticeResponseDto noticeResponseDto = new NoticeResponseDto(notice);
+        return noticeResponseDto;
     }
 
     // 게시글 조회
@@ -34,12 +35,34 @@ public class NoticeService {
     }
 
     // 게시글 삭제
-    public void deleteContent(Long ContentId, String userName) {
-        String writer = noticeRepository.findById(ContentId).orElseThrow(
-                () -> new IllegalArgumentException("게시글이 존재하지 않습니다.")).getNickname();
-        if (Objects.equals(writer, userName)) {
-            noticeRepository.deleteById(ContentId);
-        }else new IllegalArgumentException("작성한 유저가 아닙니다.");
+    @Transactional
+    public void deleteContent(Long contentId, String userName) {
+        Notice writer = noticeRepository.findById(contentId).orElseThrow(
+                () -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
+        if (Objects.equals(writer.getUsername(), userName)) {
+            noticeRepository.delete(writer);
+        }else{
+            throw new IllegalArgumentException("작성한 유저가 아닙니다.");
+        }
+    }
+
+    //게시글 수정
+    @Transactional
+    public NoticeResponseDto changeNotice(Long noticeId, NoticeCreateDto noticeCreateDto) {
+        Notice notice = noticeRepository.findById(noticeId).orElseThrow(
+                () -> new IllegalArgumentException("게시글이 존재하지 않습니다."));
+
+        notice.setTitle(noticeCreateDto.getTitle());
+        notice.setDescription(noticeCreateDto.getDescription());
+        notice.setImage(noticeCreateDto.getImage());
+        notice.setNoticeDate(noticeCreateDto.getDay());
+
+        NoticeResponseDto noticeResponseDto = new NoticeResponseDto(notice);
+        noticeRepository.save(notice);
+
+
+
+        return noticeResponseDto;
     }
 }
 
