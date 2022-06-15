@@ -4,11 +4,14 @@ import com.sparta.mini_projcet.dto.LoginRequestDto;
 import com.sparta.mini_projcet.dto.SignupRequestDto;
 import com.sparta.mini_projcet.exception.ApiResponseMessage;
 import com.sparta.mini_projcet.jwt.JwtTokenProvider;
+import com.sparta.mini_projcet.security.UserDetailsImpl;
 import com.sparta.mini_projcet.service.MemberService;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,6 +35,13 @@ public class MemberController {
             return "닉네임 또는 패스워드를 확인해주세요";
         }
     }
+
+    //회원 정보 조회
+    @GetMapping("/api/user/info")
+    public String userInfo(@AuthenticationPrincipal UserDetailsImpl userDetails){
+        return userDetails.getUsername();
+    }
+
     // 회원 가입 요청 처리
     @PostMapping("/api/user/signup")
     public ResponseEntity<ApiResponseMessage>  registerUser(@RequestBody SignupRequestDto requestDto) {
