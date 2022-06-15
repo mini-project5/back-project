@@ -41,6 +41,7 @@ public class Notice extends Timestamped{
         notice.setDescription(noticeCreateDto.getDescription());
         notice.setNoticeDate(noticeCreateDto.getDay());
         notice.setUsername(username);
+        notice.setImage(noticeCreateDto.getImage());
         return notice;
     }
 
