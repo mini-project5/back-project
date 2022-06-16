@@ -54,7 +54,7 @@
 - java8
 - spring JPA
 - mysql
-- 
+- spring 2.7
 
 ### 배포
 - AWS S3
