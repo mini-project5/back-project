@@ -109,17 +109,17 @@ def home_():
 ```
 
 
-### 로그인 페이지
-
+### 로그인 api
+<!-- 
 *> 로그인페이지 rendering*
 
 ```python
 @app.route('/login')
 def home_login():
     return render_template('register.html', msg=msg)
-```
+``` -->
 
-*> 로그인페이지 로그인 쿠키가 만료/ 존재하지 않을때 처리*
+<!-- *> 로그인페이지 로그인 쿠키가 만료/ 존재하지 않을때 처리*
 
 ```python
 @app.route('/login/login')
@@ -130,9 +130,38 @@ def login():
         return redirect(url_for("login", msg="로그인 시간이 만료되었습니다."))
     except jwt.exceptions.DecodeError:
         return redirect(url_for("login", msg="로그인 정보가 존재하지 않습니다."))
+``` -->
+
+<!-- *> 로그인시 pw를 해쉬함수를 사용하여 DB에 저장*
+
+```python
+@app.route('/sign_in', methods=['POST'])
+def sign_in():
+    
+         return jsonify({'result': 'success', 'token': token})
+    # 찾지 못하면
+    else:
+        return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
+``` -->
+
+*> 회원가입시 ID pw 확인*
+
+```
+    public Boolean login(LoginRequestDto loginRequestDto){
+        Member member = memberRepository.findByUsername(loginRequestDto.getUsername())
+                .orElse(null);
+        if (member != null) {
+            if (!passwordEncoder.matches(loginRequestDto.getPassword(), member.getPassword())) {
+                return false;
+            }
+        } else {
+            return false;
+        }
+        return true;
+    }
 ```
 
-*> 로그인시 pw를 해쉬함수를 사용하여 DB에 저장*
+*> 로그인시 아이디 확인*
 
 ```python
 @app.route('/sign_in', methods=['POST'])
@@ -144,24 +173,26 @@ def sign_in():
         return jsonify({'result': 'fail', 'msg': '아이디/비밀번호가 일치하지 않습니다.'})
 ```
 
-*> 회원가입시 ID pw 확인*
-
-```python
-@app.route('/sign_up/save', methods=['POST'])
-def sign_up():
-    
-    return jsonify({'result': 'success'})
-```
-
 *> 회원가입시 ID 중복확인*
 
-```python
-@app.route('/sign_up/check_dup', methods=['POST'])
-def check_dup():
-    # 아이디 중복확인
-    
-    return jsonify({'result': 'success', 'exists': exists})
 ```
+// 회원 ID 중복 확인
+        Optional<Member> found = memberRepository.findByUsername(username);
+        if (found.isPresent()) {
+            throw new IllegalArgumentException("중복된 사용자 닉네임이 존재합니다.");
+        }
+```
+
+
+*> 회원가입시 ID 비밀번호 확인 *
+
+```
+// 회원 ID 중복 확인
+        if(!password.equals(passwordCk)){
+            throw new IllegalArgumentException("비밀번호와 비밀번호 확인이 같지않습니다 확인해주세요");
+        }
+```
+
 
 
 ### 등록 페이지
