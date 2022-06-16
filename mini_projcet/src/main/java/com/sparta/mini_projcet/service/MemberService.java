@@ -64,7 +64,7 @@ public class MemberService {
         if (foundid.isPresent()) {
             throw new IllegalArgumentException("중복된 사용자 ID 가 존재합니다.");
         }
-        if (password.length() > 6){
+        if (password.length() > 6){ // !!!!정우님꺼!!!!
             throw new IllegalArgumentException("비밀번호는 6자 이상 입력해주세요");
         }
         if(!password.equals(passwordCk)){

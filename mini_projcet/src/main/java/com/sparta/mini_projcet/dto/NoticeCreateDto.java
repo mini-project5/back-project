@@ -15,5 +15,8 @@ public class NoticeCreateDto {
     @NotNull(message = "내용을 입력해 주세요.")
     private String description;
     private String image;
-    private LocalDateTime day;
+    private String day;
+
+
+
 }

@@ -15,8 +15,7 @@ public class NoticeResponseDto {
     private String username;
     private String description;
     private String image;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime day;
+    private String day;
 //    private int countReply;
 
     @Builder
