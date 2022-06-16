@@ -46,6 +46,13 @@
 - Redux-thunk
 - React-router-dom
 - Styled-component
+
+### Back-end
+- java8
+- spring JPA
+- mysql
+- 
+
 ### 배포
 - AWS S3
 
@@ -73,7 +80,7 @@
 <br>
 
 ## 관련 링크
-관련된 링크
+[관련된 링크](https://www.notion.so/5-TIL-9d235b6269c147d5976d07e89bbebd63)
 
 ## 프로젝트 정보
 
