@@ -24,7 +24,7 @@ public class Notice extends Timestamped{
     private String username;
     /*private String nickname;*/
     private String image;
-    private LocalDateTime noticeDate;
+    private String noticeDate;
 
     @Column
     private int loveCnt;
@@ -32,8 +32,6 @@ public class Notice extends Timestamped{
     @ManyToOne
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
-
-
 
     public static Notice createNotice(NoticeCreateDto noticeCreateDto, String username){
         Notice notice = new Notice();

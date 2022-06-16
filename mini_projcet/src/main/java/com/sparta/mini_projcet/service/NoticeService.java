@@ -29,7 +29,7 @@ public class NoticeService {
 
     // 게시글 조회
     public List<NoticeResponseDto> getNotice() {
-        List<Notice> notice = noticeRepository.findAllByOrderByCreatedAtDesc();
+        List<Notice> notice = noticeRepository.findAllByOrderByCreatedAtDesc(); //db에서 CreatedAt이라는 값을 기준으로 내림차순 해서 가져와라
         List<NoticeResponseDto> result = notice.stream() .map(n -> new NoticeResponseDto(n)) .collect(Collectors.toList());
         return result;
     }
@@ -58,10 +58,7 @@ public class NoticeService {
         notice.setNoticeDate(noticeCreateDto.getDay());
 
         NoticeResponseDto noticeResponseDto = new NoticeResponseDto(notice);
-        noticeRepository.save(notice);
-
-
-
+        //noticeRepository.save(notice);
         return noticeResponseDto;
     }
 }
