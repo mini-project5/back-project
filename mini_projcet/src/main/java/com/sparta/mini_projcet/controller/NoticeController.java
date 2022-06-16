@@ -8,6 +8,8 @@ import com.sparta.mini_projcet.repository.MemberRepository;
 import com.sparta.mini_projcet.repository.NoticeRepository;
 import com.sparta.mini_projcet.security.UserDetailsImpl;
 import com.sparta.mini_projcet.service.NoticeService;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,6 +43,7 @@ public class NoticeController {
     public List<NoticeResponseDto> getContents() {
         return noticeService.getNotice();
     }
+
 
     //게시글 수정
     @PatchMapping("/api/notice/change/{id}")
