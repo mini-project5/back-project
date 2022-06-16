@@ -76,14 +76,21 @@
  
 ## API 구성
 
-### 웹페이지의 메인페이지
+### 로그인 api
 
 *> - 메인페이지인 index.html 파일과 등록된 게시글의 정보를 mongoDB에서 가져와 rendering 해준다.*
 
-```python
-@app.route('/')
-def home():
-    return render_template('index.html', msg=msg) 
+```java
+    @PostMapping("/api/user/login")
+    public String login(@RequestBody LoginRequestDto loginRequestDto) {
+        if (memberService.login(loginRequestDto)) {
+            String token = jwtTokenProvider.createToken(loginRequestDto.getUsername());
+            System.out.println(token);
+            return token;
+        } else {
+            return "닉네임 또는 패스워드를 확인해주세요";
+        }
+    }
 ```   
 
 *> - 로그인 후 보여지는 페이지로 로그인한 상태와 안한 상태를 구분하여 로그인한 상태일 경우 사용자 ID를 Client로 전달한다.*   
