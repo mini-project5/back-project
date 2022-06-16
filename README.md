@@ -37,7 +37,7 @@
  - react.js 
 ---
 ## 결과물
-[https://youtu.be/VQh_d5hFMBw](https://youtu.be/VQh_d5hFMBw)
+
 ---
 ## 상세기능
 ### 메인페이지
