@@ -90,7 +90,7 @@
  - db : mySql
 
  - react.js 
----
+<!-- ---
 ## 결과물
 
 ---
@@ -485,4 +485,4 @@ public boolean loveUp(Long noticeId, Long memberId) {
         - description
         - image
         - day
-        - username(id)
+        - username(id) -->
