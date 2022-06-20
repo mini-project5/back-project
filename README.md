@@ -18,8 +18,73 @@
 # W1_mountain_review
 
 ## 항해99 첫 미니프로젝트 (참가자 : 유승연, 이병수, 이경동, 박성규, 이정우)
+# 📚Co.C (코딩씨게하자)
 
 
+## 제작 기간 & 팀원 소개
+- 2022.06.10 ~ 2022.06.16
+- Front-end : 유승연, 이병수
+- Back-end : 이정우, 박성규, 이경동
+
+## 플랫폼소개
+<!-- 
+<a href="" target="_blank">프로젝트 페이지 바로가기</a>
+ -->
+ 
+ 코딩 초보들을 위한 til 저장소! 여러 정보를 공유하고 배워가는 플랫폼입니다.
+ 
+<br>
+<hr>
+<br>
+
+
+ <br>
+ <br>
+ 
+## 사용 기술 및 라이브러리
+### Front-end
+- Javascript
+- Axios
+- React-redux
+- Redux-thunk
+- React-router-dom
+- Styled-component
+
+### Back-end
+- java8
+- spring JPA
+- mysql
+- spring 2.7
+
+### 배포
+- AWS S3
+
+ <br>
+ <br>
+ 
+## 실행 화면
+
+
+ <br>
+ <br>
+ 
+## 핵심기능
+### JWT Token을 활용한 사용자 인증
+- JWT 토큰을 이용하여 로그인 기능 및 인증 기능 구현
+- 회원가입 및 로그인 시 중복확인 가능
+### 이미지 업로드 기능
+- 이미지 url을 사용하여 이미지 업로드
+### 게시글 및 댓글 등록/수정/삭제 기능
+- 게시글 등록 및 수정, 삭제 기능
+- 게시글 내 댓글 등록 및 수정, 삭제 기능
+- 로그인된 사용자만 게시글 및 댓글 등록/수정/삭제 가능
+
+<br>
+<br>
+
+## 관련 링크
+https://www.notion.so/5-TIL-9d235b6269c147d5976d07e89bbebd63
+<!-- 
 ## 프로젝트 정보
 
  - 혼자 코딩을 연습하며 til를 일기처럼 자유롭게 적는 서비스를 제공하는 웹 사이트입니다
@@ -35,9 +100,9 @@
  - db : mySql
 
  - react.js 
----
+<!-- ---
 ## 결과물
-[https://youtu.be/VQh_d5hFMBw](https://youtu.be/VQh_d5hFMBw)
+
 ---
 ## 상세기능
 ### 메인페이지
@@ -430,4 +495,5 @@ public boolean loveUp(Long noticeId, Long memberId) {
         - description
         - image
         - day
-        - username(id)
+        - username(id) -->
+ -->
