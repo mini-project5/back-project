@@ -36,7 +36,6 @@ public class NoticeController {
        /* ApiResponseMessage message = new ApiResponseMessage("Success", "게시글이 작성 되었습니다.", "", "");
        * return new  ResponseEntity<ApiResponseMessage>(message, HttpStatus.OK);
        * */
-
     }
     // 게시글 조회
     @GetMapping("/api/notice")
